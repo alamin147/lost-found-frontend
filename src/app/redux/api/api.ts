@@ -56,7 +56,17 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
+
+
+    getSingleLostItem: builder.query({
+      query: (id: string) => {
+        return {
+          url: `/lostItem/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetLostItemsQuery, useLoginMutation ,useRegistersMutation, useCategoryQuery,useCreateLostItemMutation} = api;
+export const { useGetLostItemsQuery, useLoginMutation ,useRegistersMutation, useCategoryQuery,useCreateLostItemMutation,useGetSingleLostItemQuery} = api;

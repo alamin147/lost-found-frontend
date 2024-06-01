@@ -3,11 +3,10 @@ import { Card } from "flowbite-react";
 import img from "@/app/assets/3576506_65968.jpg";
 import { lostItem } from "@/app/types/types";
 import { useGetLostItemsQuery } from "@/app/redux/api/api";
+import Link from "next/link";
 
 const RecentLostItem = () => {
-  // const res = await fetch("http://localhost:5000/api/found-items");
-
-  // const lostItems = await res.json();
+  
 
   const { data: lostItems, isLoading } = useGetLostItemsQuery({});
   console.log(lostItems);
@@ -68,12 +67,12 @@ const RecentLostItem = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <a
-                    href="#"
+                  <Link
+                   href={`/lostItems/${lostItem?.id}`}
                     className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                   >
                     See details
-                  </a>
+                  </Link>
                 </div>
               </Card>
             );
