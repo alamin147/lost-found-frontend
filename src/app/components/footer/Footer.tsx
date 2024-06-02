@@ -2,7 +2,7 @@
 import { FaLinkedin, FaFacebook, FaGithub, FaYoutube } from "react-icons/fa";
 const Footers = () => {
   return (
-    <footer className="pt-12 md:pt-20 p-4 bg-white sm:p-6 dark:bg-gray-900">
+    <footer className="relative bottom-0 pt-12 md:pt-20 p-4 bg-white sm:p-6 dark:bg-gray-900">
       <hr className="mb-5 md:mb-12" />
       <div className="mx-auto max-w-screen-xl">
         <div className="md:flex md:justify-between">

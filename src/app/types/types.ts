@@ -1,13 +1,14 @@
 export type lostItem = {
   id: string;
+  img: string;
   userId: string;
   categoryId: string;
   lostItemName: string;
   description: string;
-  date:string
+  date: string;
   location: string;
   createdAt: Date;
-  isFound:boolean
+  isFound: boolean;
   updatedAt: Date;
 };
 
@@ -16,15 +17,13 @@ export type modals = {
   status: boolean;
 };
 
-
-export type decodedUser={
-  role:Role,
-  id:string,
-  email:string
-}
+export type decodedUser = {
+  role: Role;
+  id: string;
+  email: string;
+};
 
 export enum Role {
   ADMIN = "ADMIN",
   USER = "USER",
- 
 }

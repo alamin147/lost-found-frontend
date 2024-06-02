@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <head></head>
+      <head>
+       
+      </head>
 
         <body
           className={`${inter.className} dark`}

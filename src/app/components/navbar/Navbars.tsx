@@ -26,7 +26,9 @@ export function Navbars() {
         </Navbar.Link>
         <Navbar.Link href="#aboutUs">About us</Navbar.Link>
 
-        <Navbar.Link href="#">My profile</Navbar.Link>
+        <Navbar.Link href="/lostItems">Lost items</Navbar.Link>
+        <Navbar.Link href="foundItems">Found items</Navbar.Link>
+        <Navbar.Link href="">My profile</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
