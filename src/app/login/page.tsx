@@ -15,7 +15,7 @@ const Page = () => {
     formState: { errors },
   } = useForm();
 
-  const [login, { isLoading, isSuccess }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const onSubmit = async (data: any) => {
     try {
       const res: any = await login(data);

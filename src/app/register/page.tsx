@@ -97,6 +97,24 @@ const Page = () => {
                 </div>
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Image url
+                  </label>
+                  <input
+                    type="text"
+                    {...register("userImg", {
+                      required: " Image url is required",
+                    })}
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  />
+                  {errors.userImg && (
+                    <p className="text-red-600">
+                      {errors.userImg?.message as string}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Password
                   </label>
                   <input

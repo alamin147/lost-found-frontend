@@ -2,6 +2,7 @@ import { baseApi } from "./baseApi";
 
 const api = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    // login and register
     login: builder.mutation({
       query: (data: any) => {
         return {
@@ -21,6 +22,7 @@ const api = baseApi.injectEndpoints({
       },
     }),
 
+    // item category
     category: builder.query({
       query: () => {
         return {
@@ -30,6 +32,7 @@ const api = baseApi.injectEndpoints({
       },
     }),
 
+    // lost item
     getLostItems: builder.query({
       query: (data: any) => {
         return {
@@ -57,6 +60,7 @@ const api = baseApi.injectEndpoints({
       },
     }),
 
+    // found item
     createFoundItem: builder.mutation({
       query: (data: any) => {
         return {
@@ -83,6 +87,39 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
+
+    // change password
+    changePassword: builder.mutation({
+      query: (data: any) => {
+        return {
+          url: `/change-password`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+
+    // change email
+    changeEmail: builder.mutation({
+      query: (data: any) => {
+        return {
+          url: `/change-email`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+
+    // change username
+    changeUsername: builder.mutation({
+      query: (data: any) => {
+        return {
+          url: `/change-username`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -95,5 +132,8 @@ export const {
   useGetSingleLostItemQuery,
   useCreateFoundItemMutation,
   useGetFoundItemsQuery,
-  useGetSingleFoundItemQuery
+  useGetSingleFoundItemQuery,
+  useChangePasswordMutation,
+  useChangeEmailMutation,
+  useChangeUsernameMutation,
 } = api;
