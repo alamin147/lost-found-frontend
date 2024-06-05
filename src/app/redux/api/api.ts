@@ -59,8 +59,45 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
+    getMyLostItem: builder.query({
+      query: () => {
+        return {
+          url: `/my/lostItem`,
+          method: "GET",
+        };
+      },
+      providesTags: ["mylostItems"],
+    }),
+    editMyLostItem: builder.mutation({
+      query: (data: any) => {
+        return {
+          url: `/my/lostItem`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["mylostItems"],
+    }),
+    deleteMyLostItem: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `/my/lostItem/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["mylostItems"],
+    }),
 
     // found item
+    getMyFoundItem: builder.query({
+      query: () => {
+        return {
+          url: `/my/foundItem`,
+          method: "GET",
+        };
+      },
+      providesTags: ["myFoundItems"],
+    }),
     createFoundItem: builder.mutation({
       query: (data: any) => {
         return {
@@ -87,6 +124,25 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
+    editMyFoundItem: builder.mutation({
+      query: (data: any) => {
+        return {
+          url: `/my/foundItem`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["myFoundItems"],
+    }),
+    deleteMyFoundItem: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `/my/foundItem/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["myFoundItems"],
+    }),
 
     // change password
     changePassword: builder.mutation({
@@ -98,7 +154,6 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
-
     // change email
     changeEmail: builder.mutation({
       query: (data: any) => {
@@ -109,7 +164,6 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
-
     // change username
     changeUsername: builder.mutation({
       query: (data: any) => {
@@ -117,6 +171,26 @@ const api = baseApi.injectEndpoints({
           url: `/change-username`,
           method: "POST",
           body: data,
+        };
+      },
+    }),
+
+    // create claim
+    createClaim: builder.mutation({
+      query: (data: any) => {
+        return {
+          url: `/claims`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    // my claim
+    myClaims: builder.query({
+      query: () => {
+        return {
+          url: `/my/claims`,
+          method: "GET",
         };
       },
     }),
@@ -136,4 +210,12 @@ export const {
   useChangePasswordMutation,
   useChangeEmailMutation,
   useChangeUsernameMutation,
+  useCreateClaimMutation,
+  useMyClaimsQuery,
+  useGetMyLostItemQuery,
+  useEditMyLostItemMutation,
+  useDeleteMyLostItemMutation,
+  useGetMyFoundItemQuery,
+  useDeleteMyFoundItemMutation,
+  useEditMyFoundItemMutation,
 } = api;

@@ -40,7 +40,7 @@ const Page = () => {
       };
 
       const res: any = await createFoundItem(foundData);
-  
+
       if (res?.data?.success == false) {
         Modals({ message: "Failed to create Found item", status: false });
       } else {
