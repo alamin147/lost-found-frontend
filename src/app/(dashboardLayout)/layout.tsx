@@ -10,11 +10,10 @@ import { ToastContainer } from "react-toastify";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
-
   const users: any = useUserVerification();
   const { data: adminStats, isLoading } = useAdminStatsQuery({});
   const [blockUser, { isLoading: blockLoading }] = useBlockUserMutation({});
-  console.log(adminStats?.data?.userData);
+  // console.log(adminStats?.data?.userData);
 
   if (isLoading) {
     return (
@@ -29,9 +28,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
     // console.log(res);
     if (res?.data?.statusCode == 200) {
       Modals({ message: res?.data?.message, status: true });
-      router.refresh();
+      // router.refresh();
+      return;
     } else {
       Modals({ message: "Failed to Block", status: false });
+      return;
     }
   };
 
@@ -149,15 +150,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
                           </td>
                           <th scope="col" className="p-4">
                             <div className="flex items-center">
-                              {blockLoading ? (
-                                <Spinner />
-                              ) : (
-                                <input
-                                  type="checkbox"
-                                  onClick={() => handleBlock(user?.id)}
-                                  className="mx-auto w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                />
-                              )}
+                              <button
+                                onClick={() => handleBlock(user?.id)}
+                                className="mx-auto w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                              ></button>
                             </div>
                           </th>
                         </tr>

@@ -71,9 +71,9 @@ const RecentLostItem = () => {
             return (
               <Card
                 key={lostItem.id}
-                className="max-w-sm mx-auto"
+                className="max-w-xs  mx-auto"
                 imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-                imgSrc={img.src}
+                imgSrc={lostItem?.img}
               >
                 <a>
                   <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">

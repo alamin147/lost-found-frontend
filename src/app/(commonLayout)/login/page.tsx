@@ -17,9 +17,10 @@ const Page = () => {
 
   const [login, { isLoading }] = useLoginMutation();
   const onSubmit = async (data: any) => {
+    // console.log(data)
     try {
       const res: any = await login(data);
-      console.log(res);
+      // console.log(res);
       if (res?.data) {
         Modals({ message: "User logged in successfully", status: true });
         setUserLocalStorage(res?.data?.data?.token);
@@ -71,7 +72,7 @@ const Page = () => {
                     Password
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     {...register("password", {
                       required: "Password is required",
                     })}

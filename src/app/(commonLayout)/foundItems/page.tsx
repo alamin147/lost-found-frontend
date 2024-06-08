@@ -45,9 +45,9 @@ const Page = () => {
             return (
               <Card
                 key={foundItem.id}
-                className="max-w-sm mx-auto"
+                className="max-w-xs mx-auto"
                 imgAlt="foundItem"
-                imgSrc={foundItem.img ? foundItem.img : img.src}
+                imgSrc={foundItem?.img }
               >
                 <a>
                   <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">

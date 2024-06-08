@@ -202,7 +202,7 @@ const api = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["users"],
+      // providesTags: ["adminData"],
     }),
     // admin stats
     blockUser: builder.mutation({
@@ -212,7 +212,7 @@ const api = baseApi.injectEndpoints({
           method: "PUT",
         };
       },
-      invalidatesTags: ["users"],
+      // invalidatesTags: ["adminData"],
     }),
   }),
 });
