@@ -194,6 +194,26 @@ const api = baseApi.injectEndpoints({
         };
       },
     }),
+    // admin stats
+    adminStats: builder.query({
+      query: () => {
+        return {
+          url: `/admin/stats`,
+          method: "GET",
+        };
+      },
+      providesTags: ["users"],
+    }),
+    // admin stats
+    blockUser: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `/block/user/${id}`,
+          method: "PUT",
+        };
+      },
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
@@ -218,4 +238,6 @@ export const {
   useGetMyFoundItemQuery,
   useDeleteMyFoundItemMutation,
   useEditMyFoundItemMutation,
+  useAdminStatsQuery,
+  useBlockUserMutation,
 } = api;

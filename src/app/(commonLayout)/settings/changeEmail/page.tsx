@@ -1,12 +1,14 @@
 "use client";
 import { Button, Spinner } from "flowbite-react";
-import { userVerification } from "../../auth/auth";
+import { removeUserLocalStorage, useUserVerification } from "@/app/auth/auth";
 import avatar from "@/app/assets/avatar.jpg";
-import { useChangePasswordMutation } from "../../redux/api/api";
+import { useChangeEmailMutation } from "@/app/redux/api/api";
 import { useForm } from "react-hook-form";
-import Modals from "../../components/modal/Modal";
+import Modals from "@/app/components/modal/Modal";
 import { ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 const Page = () => {
+  const router = useRouter()
   const {
     handleSubmit,
     register,
@@ -14,13 +16,14 @@ const Page = () => {
     formState: { errors },
   } = useForm();
 
-  const users: any = userVerification();
+  const users: any = useUserVerification();
   // console.log(users?.userImg);
-  const [changePassword, { isLoading }]: any = useChangePasswordMutation();
+  const [changeEmail, { isLoading }]: any = useChangeEmailMutation();
 
   const onSubmit = async (data: any) => {
     try {
-      const res: any = await changePassword(data);
+      const email = data.email;
+      const res: any = await changeEmail({ email });
       console.log(res);
       if (res?.error?.data?.message) {
         Modals({ message: res?.error?.data?.message, status: false });
@@ -28,15 +31,16 @@ const Page = () => {
       }
       if (res?.data?.statusCode == 200) {
         Modals({
-          message: `${res?.data?.message}.`,
+          message: `${res?.data?.message}. Your new email is ${email}. Now Please login again`,
           status: true,
         });
         reset();
-        // router.push("/login");
+        removeUserLocalStorage();
+        router.push("/login");
       }
     } catch (err: any) {
       // console.log("errorrrrr", err);
-      Modals({ message: "Failed to change password.", status: false });
+      Modals({ message: "Failed to change email.", status: false });
     }
   };
 
@@ -49,13 +53,13 @@ const Page = () => {
 
             <a
               href="/settings/changeEmail"
-              className="flex items-center px-3 py-2.5 font-semibold hover:text-gray-500 hover:rounded-full"
+              className="flex items-center px-3 py-2.5 font-bold bg-white  text-indigo-900 border rounded-full"
             >
               Change email
             </a>
             <a
               href="/settings/changePassword"
-              className="flex items-center px-3 py-2.5 font-bold bg-white  text-indigo-900 border rounded-full"
+              className="flex items-center px-3 py-2.5 font-semibold hover:text-gray-500 hover:rounded-full"
             >
               Change Password
             </a>
@@ -104,37 +108,19 @@ const Page = () => {
                     <div className="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6 ">
                       <div className="w-full">
                         <label className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
-                          Current Password
+                          Email
                         </label>
                         <input
-                          type="password"
-                          {...register("currentPassword", {
-                            required: "Password is required",
+                          type="text"
+                          {...register("email", {
+                            required: "Email is required",
                           })}
                           className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                          placeholder="Your current Password"
+                          placeholder="Your email"
                         />
-                        {errors.currentPassword && (
+                        {errors.email && (
                           <p className="text-red-600">
-                            {errors.currentPassword?.message as string}
-                          </p>
-                        )}
-                      </div>
-                      <div className="w-full">
-                        <label className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
-                          New Password
-                        </label>
-                        <input
-                          type="password"
-                          {...register("newPassword", {
-                            required: "Password is required",
-                          })}
-                          className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                          placeholder="Your new Password"
-                        />
-                        {errors.newPassword && (
-                          <p className="text-red-600">
-                            {errors.newPassword?.message as string}
+                            {errors.email?.message as string}
                           </p>
                         )}
                       </div>
@@ -149,10 +135,12 @@ const Page = () => {
                         href=""
                         className="w-1/2 me-2 mb-20"
                       >
-                        Change Password
+                        Change email
                       </Button>
                     )}
                   </form>
+
+                  <div className="flex justify-end"></div>
                 </div>
               </div>
             </div>

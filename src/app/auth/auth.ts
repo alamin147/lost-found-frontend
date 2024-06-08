@@ -24,7 +24,7 @@ export const getUserLocalStorage = () => {
 export const removeUserLocalStorage = () => {
   if (typeof window !== "undefined" && window.localStorage) {
     localStorage.removeItem("accessToken");
-    redirect('/login')
+    redirect("/login");
   }
 };
 
@@ -33,7 +33,7 @@ export const verifyToken = (token: string) => {
   return decodedUser;
 };
 
-export const userVerification = () => {
+export const useUserVerification = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -49,10 +49,15 @@ export const userVerification = () => {
   return user;
 };
 
-
+export const signOut: any = () => {
+  if (typeof window !== "undefined" && window.localStorage) {
+    localStorage.removeItem("accessToken");
+    redirect("/");
+  }
+};
 
 // const router = useRouter()
-//   const user: any  = userVerification();
+//   const user: any  = useUserVerification();
 //   console.log(user.role);
 //   if(user?.role=="USER"){
 //    removeUserLocalStorage()

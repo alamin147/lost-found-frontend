@@ -1,10 +1,13 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { Dropdown, Spinner } from "flowbite-react";
-import Modals from "../components/modal/Modal";
+import Modals from "@/app/components/modal/Modal";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
-import { useCategoryQuery, useCreateFoundItemMutation } from "../redux/api/api";
+import {
+  useCategoryQuery,
+  useCreateFoundItemMutation,
+} from "@/app/redux/api/api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

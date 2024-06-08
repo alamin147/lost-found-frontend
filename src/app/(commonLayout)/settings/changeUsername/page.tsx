@@ -1,10 +1,10 @@
 "use client";
 import { Button, Spinner } from "flowbite-react";
-import { removeUserLocalStorage, userVerification } from "../../auth/auth";
+import { removeUserLocalStorage, useUserVerification } from "@/app/auth/auth";
 import avatar from "@/app/assets/avatar.jpg";
-import { useChangeUsernameMutation } from "../../redux/api/api";
+import { useChangeUsernameMutation } from "@/app/redux/api/api";
 import { useForm } from "react-hook-form";
-import Modals from "../../components/modal/Modal";
+import Modals from "@/app/components/modal/Modal";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 const Page = () => {
@@ -17,7 +17,7 @@ const Page = () => {
     formState: { errors },
   } = useForm();
 
-  const users: any = userVerification();
+  const users: any = useUserVerification();
   // console.log(users?.userImg);
   const [changeUsername, { isLoading }]: any = useChangeUsernameMutation();
 

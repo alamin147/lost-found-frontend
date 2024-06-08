@@ -1,13 +1,11 @@
 "use client";
 import { Card, Spinner } from "flowbite-react";
-import img from "@/app/assets/3576506_65968.jpg";
-import { lostItem } from "@/app/types/types";
 import { useMyClaimsQuery } from "@/app/redux/api/api";
 import Link from "next/link";
 
 const Page = () => {
   const { data: myClaims, isLoading } = useMyClaimsQuery({});
-  console.log(myClaims);
+  // console.log(myClaims);
 
   if (isLoading)
     return (
@@ -65,13 +63,13 @@ const Page = () => {
                 <div className="flex items-center justify-between">
                   <span className=" text-gray-900 dark:text-white">
                     <span className="text-gray-400">Found by: </span>
-                   {myClaim?.user?.username}
+                    {myClaim?.user?.username}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className=" text-gray-900 dark:text-white">
                     <span className="text-gray-400">Email: </span>
-                   {myClaim?.user?.email}
+                    {myClaim?.user?.email}
                   </span>
                 </div>
 

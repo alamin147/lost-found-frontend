@@ -1,11 +1,12 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useRegistersMutation } from "../redux/api/api";
+
+import { useLoginMutation } from "@/app/redux/api/api";
 import { Spinner } from "flowbite-react";
 import { useRouter } from "next/navigation";
-import Modals from "../components/modal/Modal";
+import Modals from "@/app/components/modal/Modal";
 import { ToastContainer } from "react-toastify";
-import { setUserLocalStorage } from "../auth/auth";
+import { setUserLocalStorage } from "@/app/auth/auth";
 const Page = () => {
   const router = useRouter();
   const {
@@ -14,32 +15,20 @@ const Page = () => {
     formState: { errors },
   } = useForm();
 
-  const [registers, { isLoading }] = useRegistersMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const onSubmit = async (data: any) => {
-    // console.log(data)
-    if (data.password == data.conpassword) {
-      try {
-
-        const res: any = await registers(data);
-        // console.log(res);
-        if(res?.error?.data?.message){
-          Modals({ message: res?.error?.data?.message, status: false });
-          return
-        }
-        if (res?.data) {
-          Modals({ message: "User registered successfully. Please login again!!!", status: true });
-          // router.push("/login");
-        }
-      } catch (err: any) {
-        console.log("errorrrrr", err);
-        Modals({ message: "Failed to register", status: false });
+    try {
+      const res: any = await login(data);
+      console.log(res);
+      if (res?.data) {
+        Modals({ message: "User logged in successfully", status: true });
+        setUserLocalStorage(res?.data?.data?.token);
+        router.push("/");
+      } else {
+        Modals({ message: res?.error?.data?.message, status: false });
       }
-    } else {
-      Modals({
-        message: "Password and confirm password are not same",
-        status: false,
-      });
-      return;
+    } catch (err: any) {
+      Modals({ message: "Failed to login", status: false });
     }
   };
 
@@ -50,7 +39,7 @@ const Page = () => {
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Sign up
+                Sign in to your account
               </h1>
 
               {/* form */}
@@ -61,55 +50,19 @@ const Page = () => {
               >
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Your email
-                  </label>
-                  <input
-                    type="text"
-                    {...register("email", {
-                      required: "Email is required",
-                    })}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
-                  />
-                  {errors.email && (
-                    <p className="text-red-600">
-                      {errors.email?.message as string}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Username
+                    Your email/username
                   </label>
                   <input
                     type="text"
                     {...register("username", {
                       required: "Username is required",
                     })}
-                    placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
                   />
                   {errors.username && (
                     <p className="text-red-600">
                       {errors.username?.message as string}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Image url
-                  </label>
-                  <input
-                    type="text"
-                    {...register("userImg", {
-                      required: " Image url is required",
-                    })}
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  />
-                  {errors.userImg && (
-                    <p className="text-red-600">
-                      {errors.userImg?.message as string}
                     </p>
                   )}
                 </div>
@@ -128,24 +81,6 @@ const Page = () => {
                   {errors.password && (
                     <p className="text-red-600">
                       {errors.password?.message as string}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Confirm Password
-                  </label>
-                  <input
-                    type="text"
-                    {...register("conpassword", {
-                      required: "Confirm Password is required",
-                    })}
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  />
-                  {errors.conpassword && (
-                    <p className="text-red-600">
-                      {errors.conpassword?.message as string}
                     </p>
                   )}
                 </div>
@@ -181,16 +116,16 @@ const Page = () => {
                     type="submit"
                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                   >
-                    Sign Up
+                    Sign in
                   </button>
                 )}
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Already have an account ?{" "}
+                  Dont have an account yet?{" "}
                   <a
-                    href="/login"
+                    href="/register"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
-                    Sign in
+                    Sign up
                   </a>
                 </p>
               </form>

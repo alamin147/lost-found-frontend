@@ -76,7 +76,7 @@ const MyLostItems = () => {
     );
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="bg-white dark:bg-gray-900 min-h-screen">
       <div className="py-8 px-4 mx-auto max-w-screen-2xl sm:py-6 lg:px-6">
         <div className="mx-auto text-center lg:mb-1 mb-8">
           <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-7 md:mt-16">

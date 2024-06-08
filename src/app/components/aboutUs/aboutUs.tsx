@@ -11,7 +11,7 @@ const AboutUs = () => {
             About Us
           </h2>
           <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
-            Don't let lost items stay lost—trust Lost and Found Management to
+            Dont let lost items stay lost—trust Lost and Found Management to
             bridge the gap between lost and found.
           </p>
         </div>
@@ -20,7 +20,7 @@ const AboutUs = () => {
           <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg mx-auto">
             We emphasize your commitment to reuniting lost items with their owners
             and maintaining a seamless process. We operate with honesty,
-            transparency, and empathy. Our commitment to doing what's right
+            transparency, and empathy. Our commitment to doing whats right
             drives our actions. We understand the emotional impact of lost
             items. Our team treats each case with compassion and care. We
             embrace technology and creative solutions to enhance our services

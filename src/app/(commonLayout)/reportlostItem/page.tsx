@@ -1,10 +1,10 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { Dropdown, Spinner } from "flowbite-react";
-import Modals from "../components/modal/Modal";
+import Modals from "@/app/components/modal/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
-import { useCategoryQuery, useCreateLostItemMutation } from "../redux/api/api";
+import { useCategoryQuery, useCreateLostItemMutation } from "@/app/redux/api/api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -152,7 +152,8 @@ const Page = () => {
                 <Dropdown label={selectedMenu ? selectedMenu : "Category"}>
                   {Category?.data?.map((category: any) => {
                     return (
-                      <Dropdown.Item
+                      <Dropdown.Item 
+                      key={category?.id}
                         onClick={() =>
                           handleMenuChange(
                             `${category?.name}`,
