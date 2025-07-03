@@ -1,0 +1,30 @@
+ফ্রন্টএন্ড :
++১. হোমপেজ এ কমপক্ষে ৮ টি সেকশন থাকবে নেভবার এবং ফুটার সহ। 
++২. ফুটার সুন্দর করে সাজাতে হবে। 
++৩. প্রজেক্ট রিলেভেন্ট ইমেজ ব্যবহার করতে হবে। 
++৪. ডামি টেক্স ব্যবহার করা যাবে না। 
++৫. অথেনটিকেশন পেজ এ টেস্ট ইমেইল এবং পাসওয়ার্ড রাখতে হবে। (সুপার অ্যাডমিন ব্যাতিত )
++৬. প্রোডাক্ট বা সার্ভিস পেজ রিভিউ এবং ডিটেলস সহ থাকতে হবে। 
++৭. মার্জিত পরিমানে টেক্সট সাইজ করতে হবে। বেশি বড় বা বেশি ছোট করা যাবে না। 
++৮. কোডে সকল টেক্স এর কালার ব্যবহার করতে হবে। 
++৯. সম্পূর্ণ ওয়েবসাইট হবে রেস্পন্সিভ। (কমপক্ষে মোবাইল রেস্পন্সিভ )
++১০. ফ্রন্টএন্ড এর প্রজেক্ট কমপ্লিট হতে হবে। 
+
+ড্যাশবোর্ড :
++১. ওভারভিউ পেজ এ কার্ড, চার্ট এবং টেবিল থাকবে। 
++২. প্রোফাইল পেজ আপডেট করতে হবে। 
++৩. সম্পূর্ণ ড্যাশবোর্ড হবে রেস্পন্সিভ। 
+
+
+
+Websites for  Choosing Colors
+WebAim : https://webaim.org/resources/contrastchecker/
+ReallTime Colors : https://www.realtimecolors.com/
+Websites for Assets, Icon and illustration
+Freepik: https://www.freepik.com/
+Flaticon: https://www.flaticon.com/
+Storyset : https://storyset.com/
+For Hight Resolation  Images 
+Unsplash : https://unsplash.com/
+Pexels : https://www.pexels.com/ 
+Pixabay: https://pixabay.com/
