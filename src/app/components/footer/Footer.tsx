@@ -1,9 +1,8 @@
-
 import { FaLinkedin, FaFacebook, FaGithub, FaYoutube } from "react-icons/fa";
 const Footers = () => {
   return (
-    <footer className="relative bottom-0 pt-12 md:pt-20 p-4 bg-white sm:p-6 dark:bg-gray-900">
-      <hr className="mb-5 md:mb-12" />
+    <footer className="relative bottom-0 pt-10 md:pt-20 p-4 bg-white sm:p-6 dark:bg-gray-900">
+      {/* <hr className="mb-5 md:mb-12" /> */}
       <div className="mx-auto max-w-screen-xl">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
@@ -12,6 +11,11 @@ const Footers = () => {
                 Lost & Found
               </span>
             </a>
+            <p className="mt-2 text-gray-400 ">
+              Connecting people with their lost belongings, one item at a time.
+              <br />
+              We are here to help you find what you have lost.
+            </p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
@@ -20,7 +24,10 @@ const Footers = () => {
               </h2>
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
-                  <a href="" className="hover:underline ">
+                  <a
+                    href="https://github.com/alamin147"
+                    className="hover:underline "
+                  >
                     Github
                   </a>
                 </li>
@@ -43,7 +50,7 @@ const Footers = () => {
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Terms &amp; Conditions
+                    Terms and Conditions
                   </a>
                 </li>
               </ul>
@@ -58,13 +65,13 @@ const Footers = () => {
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
             <a
-              href="#"
+              href="https://github.com/alamin147"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <FaGithub size={25} />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/alamin-developer/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <FaLinkedin size={25} />

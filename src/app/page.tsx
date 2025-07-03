@@ -1,3 +1,6 @@
+import Faq from "./(commonLayout)/faq/Faq";
+import Reviews from "./(commonLayout)/reviews/Reviews";
+import Services from "./(commonLayout)/services/Services";
 import AboutUs from "./components/aboutUs/aboutUs";
 import Banner from "./components/banner/Banner";
 import Footers from "./components/footer/Footer";
@@ -9,12 +12,11 @@ export default function Home() {
     <>
       <Navbars />
       <Banner />
-      <div>
-        <AboutUs />
-      </div>
-      <div>
-        <RecentLostItem />
-      </div>
+      <Services />
+      <RecentLostItem />
+      <Reviews />
+      <AboutUs />
+      <Faq/>
       <Footers />
     </>
   );

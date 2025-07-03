@@ -7,13 +7,21 @@ import { Spinner } from "flowbite-react";
 import Modals from "../components/modal/Modal";
 import { useRouter } from "next/navigation";
 import { ToastContainer } from "react-toastify";
+import {
+  BarChart,
+  Bar,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const users: any = useUserVerification();
   const { data: adminStats, isLoading } = useAdminStatsQuery({});
   const [blockUser, { isLoading: blockLoading }] = useBlockUserMutation({});
-  // console.log(adminStats?.data?.userData);
 
   if (isLoading) {
     return (
@@ -25,10 +33,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   const handleBlock = async (id: string) => {
     const res = await blockUser(id);
-    // console.log(res);
     if (res?.data?.statusCode == 200) {
       Modals({ message: res?.data?.message, status: true });
-      // router.refresh();
       return;
     } else {
       Modals({ message: "Failed to Block", status: false });
@@ -36,11 +42,32 @@ const Layout = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const data = [
+    { name: "Reported Items", values: 8 },
+    { name: "Lost Items", values: 4 },
+    { name: "Found Items", values: 4 },
+    { name: "User", values: 3 },
+  ];
+
   return (
-    <div className="">
+    <div>
       <Navbars />
 
-      <div className="bg-gray-900  w-full  flex justify-center">
+      <div className="pt-20 bg-gray-900">
+        <div className=" w-1/2 h-64  container mx-auto">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="values" fill="#8884d8" barSize={80} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="bg-gray-900 w-full flex justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:py-24 lg:px-8">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
             Our service statistics

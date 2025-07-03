@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Modals from "@/app/components/modal/Modal";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const Page = () => {
   const router = useRouter();
 
@@ -79,12 +80,19 @@ const Page = () => {
 
               <div className="grid max-w-2xl mx-auto mt-8">
                 <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
-                  <img
+                  {/* <img
                     className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
                     src={users?.userImg ? users?.userImg : avatar}
                     alt="Bordered avatar"
+                  /> */}
+                  <Image
+                    className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
+                    src={users?.userImg ? users?.userImg : avatar}
+                    alt="Bordered avatar"
+                    width= {500}
+                    height={500}
+                    quality={100}
                   />
-
                   <div className="flex flex-col space-y-5 sm:ml-8">
                     <button
                       type="button"

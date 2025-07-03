@@ -4,7 +4,10 @@ import { Dropdown, Spinner } from "flowbite-react";
 import Modals from "@/app/components/modal/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
-import { useCategoryQuery, useCreateLostItemMutation } from "@/app/redux/api/api";
+import {
+  useCategoryQuery,
+  useCreateLostItemMutation,
+} from "@/app/redux/api/api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -24,11 +27,9 @@ const Page = () => {
   };
   const [createLostItem, { isLoading }] = useCreateLostItemMutation();
   const { data: Category } = useCategoryQuery("");
-  // console.log(Category?.data);
   const [startDate, setStartDate] = useState(new Date());
-  // console.log(startDate);
+
   const onSubmit = async (data: any) => {
-    // console.log(data);
     try {
       const lostData = {
         lostItemName: data.lostItemName,
@@ -39,7 +40,6 @@ const Page = () => {
         date: startDate,
       };
       const res: any = await createLostItem(lostData);
-      // console.log(res);
       if (res?.data?.success == false) {
         Modals({ message: "Failed to create Lost item", status: false });
       } else {
@@ -53,8 +53,8 @@ const Page = () => {
 
   return (
     <>
-      <section className="bg-white dark:bg-gray-900 ">
-        <div className="pt-16 max-w-6xl mx-auto px-5">
+      <section className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className=" max-w-6xl mx-auto px-5 w-full">
           {/* form */}
           <h1 className="text-white text-2xl font-bold text-center mb-12">
             Report your item here
@@ -90,7 +90,7 @@ const Page = () => {
                   {...register("description", {
                     required: "Description is required",
                   })}
-                />{" "}
+                />
                 {errors.description && (
                   <p className="text-red-600">
                     {errors.description?.message as string}
@@ -109,7 +109,7 @@ const Page = () => {
                   {...register("imgUrl", {
                     required: "Image url is required",
                   })}
-                />{" "}
+                />
                 {errors.imgUrl && (
                   <p className="text-red-600">
                     {errors.imgUrl?.message as string}
@@ -127,7 +127,7 @@ const Page = () => {
                   {...register("location", {
                     required: "Location is required",
                   })}
-                />{" "}
+                />
                 {errors.location && (
                   <p className="text-red-600">
                     {errors.location?.message as string}
@@ -152,8 +152,8 @@ const Page = () => {
                 <Dropdown label={selectedMenu ? selectedMenu : "Category"}>
                   {Category?.data?.map((category: any) => {
                     return (
-                      <Dropdown.Item 
-                      key={category?.id}
+                      <Dropdown.Item
+                        key={category?.id}
                         onClick={() =>
                           handleMenuChange(
                             `${category?.name}`,

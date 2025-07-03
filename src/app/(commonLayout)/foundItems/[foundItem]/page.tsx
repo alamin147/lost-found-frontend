@@ -4,6 +4,7 @@ import {
   useCreateClaimMutation,
 } from "@/app/redux/api/api";
 import { Button, Spinner, Modal } from "flowbite-react";
+import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -57,10 +58,18 @@ const Page = ({ params }: { params: any }) => {
           <div className="h-96 flex flex-col md:flex-row items-center justify-center mx-auto">
             <div className="px-4">
               <div className="rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
-                <img
+                {/* <img
                   className="w-96"
                   src={foundItem?.img}
                   alt={foundItem?.foundItemName}
+                /> */}
+                <Image
+                  className="w-96"
+                  src={foundItem?.img}
+                  alt={foundItem?.foundItemName}
+                  width= {500}
+                  height={500}
+                  quality={100}
                 />
               </div>
             </div>
